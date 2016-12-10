@@ -1,0 +1,14 @@
+#macro(includeClassifications)
+
+<table class="table table-bordered" id="build-info">
+  <tbody>
+  #foreach($c in $classifications.entrySet())
+    <tr class="info">
+      <th>$c.key</th>
+      <td>$c.value</td>
+    </tr>
+  #end
+  </tbody>
+</table>
+
+#end

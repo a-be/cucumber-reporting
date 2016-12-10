@@ -3,6 +3,8 @@ package net.masterthought.cucumber;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -19,6 +21,8 @@ public class Configuration {
     private int trendsLimit;
     private String buildNumber;
     private String projectName;
+
+    private Map<String, String> classifications = new TreeMap<>();
 
     private Collection<Pattern> tagsToExcludeFromChart = new ArrayList<>();
 
@@ -111,5 +115,23 @@ public class Configuration {
                 throw new ValidationException(e);
             }
         }
+    }
+
+    /**
+     * Adds metadata that will be displayed at the main page of the report. It is useful when there is a few reports are
+     * generated at the same time but with different parameters/configurations.
+     *
+     * @param name  name of the property
+     * @param value value of the property
+     */
+    public void addClassifications(String name, String value) {
+        classifications.put(name, value);
+    }
+
+    /**
+     * Returns the classification for the report.
+     */
+    public Map<String, String> getClassifications() {
+        return classifications;
     }
 }
